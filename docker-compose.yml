@@ -9,6 +9,8 @@ services:
   # https://github.com/stefanprodan/dockprom
   prometheus:
     image: prom/prometheus:v2.42.0
+    ports:
+      - 9090:9090  # Prometheus Ports Published
     container_name: mikrotik-prometheus
     volumes:
       - ./prometheus:/etc/prometheus
@@ -48,7 +50,9 @@ services:
   # https://github.com/akpw/mktxp
   mktxp:
     image: ghcr.io/akpw/mktxp:gha-4093170275
-    container_name: mikrotik-mktxp
+    ports:
+      - 49090:49090  # MikroTik-Exporter-1 Published Port
+    container_name: mikrotik-mktxp-1
     volumes:
       # Since Version v0.37 mktxp runs as single user
       # Prior it was root
